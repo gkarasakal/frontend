@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello():
+def home():
     return "BESTCLOUDFORME!"
 
 @app.route('/hello')
@@ -13,9 +13,14 @@ def hello():
     try:
         resp = requests.get("http://hello/")
         if(resp.status_code == 200):
-            print(f"Status Code: {resp.status_code} Body: {resp.text}")
+            print("Status Code: {status} Body: {text}".format(
+                status = resp.status_code,
+                text = resp.text
+            ))
             return json.dumps(json.loads(resp.text), indent=4)
-        print(f"Status Code: {resp.status_code} Body: Error")
+        print("Status Code: {status} Body: Error".format(
+            status = resp.status_code
+        ))
     except:
         print("Hello service is unavailable")
         return "Service is Unavailable"
@@ -25,9 +30,14 @@ def bcfm():
     try:
         resp = requests.get("http://bcfm/")
         if(resp.status_code == 200):
-            print(f"Status Code: {resp.status_code} Body: {resp.text}")
+            print("Status Code: {status} Body: {text}".format(
+                status = resp.status_code,
+                text = resp.text
+            ))
             return json.dumps(json.loads(resp.text), indent=4)
-        print(f"Status Code: {resp.status_code} Body: Error")
+        print("Status Code: {status} Body: Error".format(
+            status = resp.status_code
+        ))
     except:
         print("Hello service is unavailable")
         return "Service is Unavailable"
